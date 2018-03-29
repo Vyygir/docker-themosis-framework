@@ -1,20 +1,20 @@
-FROM php:5.6-apache
-MAINTAINER Ricardo Lüders <ricardo@luders.com.br>
+FROM php:7.2-apache
+MAINTAINER Matt Royce <open.source@vyygir.me>
 
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    php5-curl \
-    php5-gd \
-    php5-mcrypt \
-    php5-memcache \
+    php-curl \
+    php-gd \
+    php-mcrypt \
+    php-memcache \
     php-pear
 
 RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install mbstring
 
 RUN apt-get -y autoremove && apt-get clean
-RUN apt-get install -y php5-apcu
+RUN apt-get install -y php-apcu
 
 RUN a2enmod rewrite
 RUN a2enmod socache_shmcb || true
